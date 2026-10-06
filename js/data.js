@@ -3,21 +3,21 @@
    Edita SOLO este archivo: ambos formatos (ATS y visual) se generan desde aquí.
    ========================================================================== */
 window.CV_DATA = {
-  nombre: "Andrés Felipe Gómez Rivera",
-  titulo: "Ingeniero de Software Full Stack",
-  foto: "", // Opcional: ruta a una imagen (ej. "img/foto.jpg"). Vacío = iniciales.
+  nombre: "Laura Morales Valencia",
+  titulo: "Ingeniera informatica y Enfermera",
+  foto: "https://img.magnific.com/vector-premium/desarrollador-software-vector-ilustracion-tecnologia-comunicacion-seguridad-cibernetica_1249867-5467.jpg?semt=ais_hybrid&w=740&q=80", // Opcional: ruta a una imagen (ej. "img/foto.jpg"). Vacío = iniciales.
 
   contacto: {
-    email: "andres.gomez@email.com",
-    telefono: "+57 300 123 4567",
-    ubicacion: "Bogotá, Colombia",
-    linkedin: "linkedin.com/in/andresgomez",
+    email: "Lau.morales0728@gmail.com",
+    telefono: "+57 3232862224",
+    ubicacion: "Manizales, Colombia",
+    linkedin: "",
     github: "github.com/andresgomez",
-    web: "andresgomez.dev"
+    web: ""
   },
 
   resumen:
-    "Ingeniero de software con más de 7 años de experiencia diseñando, construyendo y desplegando aplicaciones web escalables. " +
+    "Ingeniera informatica con más de 5 años de experiencia diseñando, construyendo y desplegando aplicaciones web escalables. " +
     "Especializado en JavaScript/TypeScript, React y Node.js, con experiencia sólida en arquitectura de microservicios, " +
     "servicios en la nube (AWS) y automatización CI/CD. Orientado a resultados, con enfoque en código limpio, " +
     "pruebas automatizadas y trabajo colaborativo en equipos ágiles.",
@@ -44,9 +44,9 @@ window.CV_DATA = {
 
   experiencia: [
     {
-      cargo: "Ingeniero de Software Senior",
+      cargo: "Ingeniera informatica Senior",
       empresa: "TechNova Solutions",
-      lugar: "Bogotá, Colombia (remoto)",
+      lugar: "Manizales, Colombia (remoto)",
       periodo: "Ene 2024 – Actualidad",
       logros: [
         "Lideré el rediseño de la plataforma de pagos en microservicios con Node.js y NestJS, reduciendo la latencia promedio en un 38 %.",
