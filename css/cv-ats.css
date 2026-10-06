@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Formato ATS: una sola columna, texto plano en orden lógico, encabezados
+   estándar, sin iconos, sin tablas, sin imágenes. El diseño se logra solo con
+   tipografía, espaciado y filetes finos (decoración CSS que no altera el texto).
+   ========================================================================== */
+.cv-ats {
+  --navy: #1f3a5f;
+  --rule: #b8c2d2;
+  --text: #1a1a1a;
+  --muted: #4a5468;
+
+  padding: clamp(20px, 6vw, 18mm);
+  font-family: Calibri, Carlito, Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.cv-ats h1,
+.cv-ats h2,
+.cv-ats h3,
+.cv-ats p,
+.cv-ats ul { margin: 0; }
+
+.cv-ats a { color: inherit; text-decoration: none; }
+
+/* ---------- Encabezado ---------- */
+.ats-header { padding-bottom: 10pt; border-bottom: 3pt solid var(--navy); }
+.ats-header h1 {
+  font-size: 26pt;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.005em;
+  color: var(--navy);
+}
+.ats-role {
+  margin-top: 4pt;
+  font-size: 12.5pt;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--text);
+}
+.ats-contact { margin-top: 5pt; font-size: 9.8pt; color: var(--muted); overflow-wrap: anywhere; }
+.ats-contact + .ats-contact { margin-top: 1pt; }
+
+/* ---------- Secciones ---------- */
+.cv-ats section { margin-top: 15pt; }
+
+.cv-ats h2 {
+  margin-bottom: 8pt;
+  padding-bottom: 3pt;
+  border-bottom: .75pt solid var(--rule);
+  font-size: 10.5pt;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.cv-ats h3 { font-size: 10.8pt; font-weight: 700; }
+
+/* ---------- Habilidades: etiqueta + lista, en filas (sin tablas) ---------- */
+.ats-skills { list-style: none; padding: 0; }
+.ats-skills li {
+  display: grid;
+  grid-template-columns: 40mm minmax(0, 1fr);
+  gap: 0 4mm;
+  margin-bottom: 3pt;
+}
+.ats-skills strong { color: var(--navy); }
+
+/* ---------- Experiencia, proyectos, educación ---------- */
+.ats-job,
+.ats-item { margin-bottom: 11pt; break-inside: avoid; }
+
+.ats-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0 14pt;
+}
+.ats-row > span { font-size: 9.8pt; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.ats-co { font-weight: 600; color: var(--navy); }
+
+.ats-meta { margin-bottom: 3pt; font-style: italic; color: var(--muted); }
+
+.cv-ats ul:not(.ats-skills) { padding-left: 14pt; margin-top: 2pt; }
+.cv-ats ul:not(.ats-skills) li { margin-bottom: 2.5pt; padding-left: 2pt; }
+.cv-ats ul:not(.ats-skills) li::marker { color: var(--navy); }
+
+.ats-item p { margin-top: 1pt; }
+.ats-stack { margin-top: 4pt; font-size: 10pt; color: var(--muted); }
+.ats-stack strong { color: var(--text); }
+
+@media screen and (max-width: 560px) {
+  .ats-skills li { grid-template-columns: 1fr; }
+  .ats-row > span { white-space: normal; }
+  .ats-header h1 { font-size: 22pt; }
+}

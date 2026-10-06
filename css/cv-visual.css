@@ -1,0 +1,269 @@
+/* ==========================================================================
+   Formato visual: barra lateral sobria + contenido principal con línea de
+   tiempo, barras de nivel y tarjetas. Paleta corporativa de colores sólidos.
+   Cuatro temas (data-theme): navy (por defecto), slate, teal y burgundy.
+   ========================================================================== */
+.cv-visual {
+  --side: #14253d;        /* barra lateral */
+  --accent: #2b5fa8;      /* color de acento (títulos, línea de tiempo) */
+  --accent-2: #9db9de;    /* acento claro sobre fondo oscuro */
+  --accent-soft: #eaf0f9; /* fondo suave de chips y fechas */
+  --ink: #1d2433;
+  --ink-soft: #4a5468;
+  --rule: #dde3ee;
+  --side-w: 280px;
+
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.cv-visual[data-theme="slate"]    { --side: #232a34; --accent: #3f4f66; --accent-2: #aab6c8; --accent-soft: #edf0f4; }
+.cv-visual[data-theme="teal"]     { --side: #12312f; --accent: #0f766e; --accent-2: #8fd0c7; --accent-soft: #e6f3f1; }
+.cv-visual[data-theme="burgundy"] { --side: #3b1e29; --accent: #8c2f4a; --accent-2: #dba9b8; --accent-soft: #f7ebef; }
+
+.cv-visual h1, .cv-visual h2, .cv-visual h3, .cv-visual h4, .cv-visual p, .cv-visual ul { margin: 0; }
+.cv-visual ul { padding: 0; list-style: none; }
+.cv-visual a { color: inherit; text-decoration: none; }
+
+/* El degradado del contenedor mantiene la barra lateral continua en todas las páginas del PDF */
+.v-grid {
+  display: grid;
+  grid-template-columns: var(--side-w) minmax(0, 1fr);
+  min-height: 297mm;
+  background: linear-gradient(to right, var(--side) 0, var(--side) var(--side-w), #fff var(--side-w));
+}
+
+/* ---------- Barra lateral ---------- */
+.v-side {
+  padding: 32px 24px;
+  color: #e6ebf3;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.v-avatar {
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  overflow: hidden;
+}
+.v-avatar span,
+.v-avatar img {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--side);
+  color: #fff;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+
+.v-side h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 9px;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.v-side h3::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, .22);
+}
+.v-side h3:first-of-type { margin-top: 0; }
+
+.v-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-size: 9pt;
+  overflow-wrap: anywhere;
+}
+.v-contact .ico { margin-top: 2px; color: var(--accent-2); font-size: 13px; }
+
+.v-bars li { margin-bottom: 8px; break-inside: avoid; }
+.v-bars .v-bar-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 8.8pt;
+}
+.v-bars .v-bar-label em { font-style: normal; color: var(--accent-2); }
+.v-track {
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, .15);
+  overflow: hidden;
+}
+.v-fill {
+  display: block;
+  height: 100%;
+  width: var(--pct, 0%);
+  border-radius: 4px;
+  background: var(--accent-2);
+}
+
+.v-side .v-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.v-side .v-tags li {
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 8.3pt;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+
+.v-cert { margin-bottom: 7px; font-size: 8.8pt; break-inside: avoid; }
+.v-cert strong { display: block; color: #fff; font-weight: 600; }
+.v-cert span { color: var(--accent-2); }
+
+/* ---------- Contenido principal ---------- */
+.v-main {
+  padding: 38px 36px 34px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.v-hero { padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.v-hero h1 {
+  font-size: 26pt;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--side);
+}
+.v-role {
+  display: block;
+  margin-top: 8px;
+  font-size: 10.5pt;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.v-summary { margin-top: 12px; color: var(--ink-soft); }
+
+.v-main section { margin-top: 22px; }
+.v-main h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 13px;
+  font-size: 10.5pt;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--side);
+}
+.v-main h2::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+}
+.v-main h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* Línea de tiempo */
+.v-timeline { position: relative; padding-left: 20px; border-left: 2px solid var(--rule); }
+.v-job { position: relative; margin-bottom: 17px; break-inside: avoid; }
+.v-job::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px #fff;
+}
+.v-job-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; }
+.v-job h3 { font-size: 11pt; color: var(--side); }
+.v-date {
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  white-space: nowrap;
+}
+.v-company { margin: 2px 0 6px; font-weight: 600; color: var(--accent); }
+.v-company span { color: #737d91; font-weight: 400; }
+.v-job ul li { position: relative; padding-left: 14px; margin-bottom: 3px; color: var(--ink-soft); }
+.v-job ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .65em;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+}
+.v-job ul.v-chips li { padding-left: 9px; margin-bottom: 0; color: var(--accent); }
+.v-job ul.v-chips li::before { content: none; }
+
+.v-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.v-chips li {
+  padding: 2px 9px;
+  border-radius: 4px;
+  font-size: 8.2pt;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Proyectos */
+.v-projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.v-card {
+  padding: 12px 13px;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  border-radius: 6px;
+  background: #fff;
+  break-inside: avoid;
+}
+.v-card h3 { font-size: 10pt; color: var(--side); }
+.v-card p { margin: 4px 0 6px; font-size: 8.8pt; color: var(--ink-soft); }
+.v-card .v-link { display: block; margin-top: 7px; font-size: 8.2pt; font-weight: 600; color: var(--accent); overflow-wrap: anywhere; }
+
+/* Educación */
+.v-edu { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.v-edu article { padding: 10px 12px; border-left: 3px solid var(--accent); border-radius: 4px; background: var(--accent-soft); break-inside: avoid; }
+.v-edu h3 { font-size: 10pt; color: var(--side); }
+.v-edu p { font-size: 9pt; color: var(--ink-soft); }
+.v-edu .v-date { display: inline-block; margin-top: 5px; background: #fff; }
+
+/* ---------- Responsivo en pantalla (la impresión siempre usa 2 columnas) ---------- */
+@media screen and (max-width: 820px) {
+  .v-grid { grid-template-columns: 1fr; background: #fff; }
+  .v-side { background-color: var(--side); }
+  .v-main { padding: 28px 20px; }
+  .v-hero h1 { font-size: 24pt; }
+}
+@media screen and (max-width: 420px) {
+  .v-side { padding: 28px 18px; }
+  .v-hero h1 { font-size: 21pt; }
+  .v-date { white-space: normal; }
+}

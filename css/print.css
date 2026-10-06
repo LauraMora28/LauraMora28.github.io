@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Impresión / exportación a PDF.
+   El tamaño de página y los márgenes (@page) los define js/app.js según el
+   formato elegido: ATS = A4 con márgenes, Visual = A4 a sangre.
+   ========================================================================== */
+@media print {
+  html, body {
+    background: #fff !important;
+    min-height: 0;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Formato visual: el fondo del lienzo se repite en cada página, así la barra lateral
+     oscura cubre toda la altura aunque el contenido de la última página sea corto. */
+  html.print-visual {
+    background: linear-gradient(to right,
+      var(--print-side) 0, var(--print-side) 280px, #fff 280px) !important;
+  }
+  html.print-visual body { background: transparent !important; }
+
+  .no-print { display: none !important; }
+
+  .stage { padding: 0; }
+
+  .sheet {
+    width: auto;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  /* El formato ATS usa los márgenes de @page, no su propio relleno */
+  .cv-ats { padding: 0 !important; }
+
+  /* El formato visual siempre en dos columnas, sin importar el ancho de la ventana */
+  .cv-visual .v-grid {
+    grid-template-columns: var(--side-w) minmax(0, 1fr) !important;
+    min-height: 297mm;
+    background: linear-gradient(to right, var(--side) 0, var(--side) var(--side-w), #fff var(--side-w)) !important;
+  }
+  .cv-visual .v-side { background-color: transparent !important; }
+  .cv-visual .v-main { padding: 34px 32px !important; }
+
+  a { color: inherit; }
+
+  h1, h2, h3 { break-after: avoid; }
+}
