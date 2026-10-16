@@ -48,8 +48,8 @@
       `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`
     ].join(' | ');
     const contacto2 = [
-      link(c.linkedin),
-      link(c.github),
+      c.linkedin ? link(c.linkedin) : '',
+      c.github ? link(c.github) : '',
       c.web ? link(c.web) : ''
     ].filter(Boolean).join(' | ');
 
@@ -73,7 +73,7 @@
         </ul>
       </section>
 
-      <section>
+      ${d.experiencia.length ? `<section>
         <h2>Experiencia laboral</h2>
         ${d.experiencia.map((e) => `
           <article class="ats-job">
@@ -82,9 +82,9 @@
             <ul>${e.logros.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
             <p class="ats-stack"><strong>Tecnologías:</strong> ${e.stack.map(esc).join(', ')}</p>
           </article>`).join('')}
-      </section>
+      </section>` : ''}
 
-      <section>
+      ${d.proyectos.length ? `<section>
         <h2>Proyectos destacados</h2>
         ${d.proyectos.map((p) => `
           <article class="ats-item">
@@ -92,7 +92,7 @@
             <p>${esc(p.descripcion)}</p>
             <p class="ats-stack"><strong>Tecnologías:</strong> ${p.stack.map(esc).join(', ')}</p>
           </article>`).join('')}
-      </section>
+          </section>` : ''}
 
       <section>
         <h2>Educación</h2>
@@ -103,10 +103,10 @@
           </article>`).join('')}
       </section>
 
-      <section>
+      ${d.certificaciones.length ? `<section>
         <h2>Certificaciones</h2>
         <ul>${d.certificaciones.map((c) => `<li>${esc(c.nombre)} – ${esc(c.emisor)} (${esc(c.anio)})</li>`).join('')}</ul>
-      </section>
+      </section>` : ''}
 
       <section>
         <h2>Idiomas</h2>
@@ -126,8 +126,8 @@
       ['mail', c.email, `mailto:${c.email}`],
       ['phone', c.telefono, `tel:${c.telefono.replace(/\s+/g, '')}`],
       ['pin', c.ubicacion, ''],
-      ['linkedin', c.linkedin, url(c.linkedin)],
-      ['github', c.github, url(c.github)],
+      c.linkedin ? ['linkedin', c.linkedin, url(c.linkedin)] : null,
+      c.github ? ['github', c.github, url(c.github)] : null,
       c.web ? ['globe', c.web, url(c.web)] : null
     ].filter(Boolean);
 
@@ -164,9 +164,9 @@
               </li>`).join('')}
           </ul>
 
-          <h3>Certificaciones</h3>
-          ${d.certificaciones.map((ce) => `
-            <div class="v-cert"><strong>${esc(ce.nombre)}</strong><span>${esc(ce.emisor)} · ${esc(ce.anio)}</span></div>`).join('')}
+          ${d.certificaciones.length ? `<h3>Certificaciones</h3>
+            ${d.certificaciones.map((ce) => `
+              <div class="v-cert"><strong>${esc(ce.nombre)}</strong><span>${esc(ce.emisor)} · ${esc(ce.anio)}</span></div>`).join('')}` : ''}
 
           <h3>Competencias</h3>
           <ul class="v-tags">${d.blandas.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
@@ -179,7 +179,7 @@
             <p class="v-summary">${esc(d.resumen)}</p>
           </header>
 
-          <section>
+          ${d.experiencia.length ? `<section>
             <h2>Experiencia</h2>
             <div class="v-timeline">
               ${d.experiencia.map((e) => `
@@ -190,9 +190,9 @@
                   <ul class="v-chips">${e.stack.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
                 </article>`).join('')}
             </div>
-          </section>
+          </section>` : ''}
 
-          <section>
+          ${d.proyectos.length ? `<section>
             <h2>Proyectos</h2>
             <div class="v-projects">
               ${d.proyectos.map((p) => `
@@ -203,7 +203,7 @@
                   <a class="v-link" href="${esc(url(p.enlace))}">${esc(p.enlace)}</a>
                 </article>`).join('')}
             </div>
-          </section>
+          </section>` : ''}
 
           <section>
             <h2>Educación</h2>

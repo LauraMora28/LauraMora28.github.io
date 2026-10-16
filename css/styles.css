@@ -2,7 +2,7 @@
    Base: variables, barra de herramientas y contenedor de la "hoja"
    ========================================================================== */
 :root {
-  --bg: #eceff6;
+  --bg: cadetblue;
   --ink: #1b1f2a;
   --muted: #5b6475;
   --brand: #1f4e8c;
